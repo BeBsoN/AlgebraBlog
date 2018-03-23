@@ -48,6 +48,7 @@ class Post extends Model
 	public function updatePost($post)
 	{
 		return $this->update($post); // create se nalazi u klasi Model koju extendamo
+		
 	}
 	
 	

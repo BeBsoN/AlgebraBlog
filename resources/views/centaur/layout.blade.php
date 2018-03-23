@@ -35,7 +35,7 @@
                     <ul class="nav navbar-nav">
                         <li class="{{ Request::is('/dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}">Dashboard</a></li>
 						@if(Sentinel::check())
-						<li class="{{ Request::is('posts*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Posts</a></li>
+						<li class="{{ Request::is('posts*') ? 'active' : '' }}"><a href="{{ route('posts.index') }}">Posts</a></li>
 						@endif()
                         @if (Sentinel::check() && Sentinel::inRole('administrator'))
                             <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Users</a></li>
