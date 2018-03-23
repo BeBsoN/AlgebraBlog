@@ -26,7 +26,11 @@ class PostController extends Controller
 		
 		//controler je zaposio model, model vraća podatke, controler vraća u view
 		$posts = Post::orderBy('created_at', 'DESC')->paginate(10); //paginate je 10 postova po stranici, orderbay također metoda u Modelu
+		
+		
 		//U index metodi napraviti logiku da user ne vidi postove od Admina
+		
+		
 		return view('centaur.posts.index',
 		[
 			'posts' => $posts  //ključ je naziv varijable, kada se šalje iz kontrolera na view
