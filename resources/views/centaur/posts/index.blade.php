@@ -29,7 +29,7 @@
 						@foreach ($posts as $post)
                             <tr>
                                 <td>{{ $post->title }}</td>
-                                <td>{{ $post->user_id }}</td>
+                                <td>{{ $post->user->email }}</td>
                                 <td>{{ date('d.m.Y', strtotime($post->created_at)) }}</td>
                                 <td>
                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default">

@@ -67,5 +67,13 @@ class Post extends Model
         ];
     }
 	
+	 /**
+     * Get the post  user. 1 post ima samo 1 user-a/authora
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+	
 }
 

@@ -15,6 +15,17 @@ Use Exception; // i exception za try catch blok
 
 class PostController extends Controller
 {
+	
+	//sentinel auth provjeri da li je korisnik prijavljen u sustav, ako nije baca ga na redirect na login
+	
+	//ako nisi administrator, mogu otići i izmjeniti url 6/5/4/3/2/1 i vidjeti druge postove
+	//u metodama edit i update provjeriti da li je on vlasnik posta, ili ako se radi od adminu onda smije li editirati sve postove. Ovo ubaciti logiku u metodu edit
+	//ista stvar i kod update-a, te ista stvar i u destroyu
+	
+public function __construct()
+{
+	$this->middleware('sentinel.auth');
+}
     /**
      * Display a listing of the resource.
      *
@@ -25,11 +36,17 @@ class PostController extends Controller
 		//dohvat svih postova, Post extenda Model, au modelu je metoda all
 		
 		//controler je zaposio model, model vraća podatke, controler vraća u view
-		$posts = Post::orderBy('created_at', 'DESC')->paginate(10); //paginate je 10 postova po stranici, orderbay također metoda u Modelu
+		//$posts = Post::orderBy('created_at', 'DESC')->paginate(10); //paginate je 10 postova po stranici, orderbay također metoda u Modelu
 		
 		
 		//U index metodi napraviti logiku da user ne vidi postove od Admina
-		
+		$user_id = Sentinel::getUser()->id;
+		if(Sentinel::inRole('administrator')){
+			$posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+		} else {
+			$posts = Post::where('user_id', $user_id)->orderBy('created_at', 'DESC')->paginate(10);
+			
+		}
 		
 		return view('centaur.posts.index',
 		[
