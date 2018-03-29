@@ -3,14 +3,15 @@
 @section('title', 'Posts')
 
 @section('content')
-	@if ($posts->count() > 0)
+
+	@if($posts->count() > 0)
     <div class="row">
 		@foreach($posts as $post)
-		<div clas="col-md-4">
+		<div class="col-md-4">
 			 <div class="panel panel-default">
 			 
 				<div class="panel-heading">
-					<h3 class="panel-title"></h3>
+					<h3 class="panel-title">
 					{{ $post->title }}
 					</h3>
 				</div>
@@ -34,10 +35,11 @@
 	</div>
 	@else
 		<div class="row">
-			<div clas="col-md-6 offset-md-3">
+			<div class="col-md-6 col-md-offset-3">
 				<h2 class="text-danger">Trenutno nema postova!!!</h2>
 			</div>
 		</div>
+        
+
 	@endif
-	
 @stop

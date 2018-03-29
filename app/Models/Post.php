@@ -74,6 +74,14 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    
+     /**
+     * Get the post  comments. 1 post ima samo više komentara
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment')->where('status', 1);
+    }
 	
 }
 

@@ -43,6 +43,9 @@ Route::resource('roles', 'RoleController');
 // Posts
 Route::resource('posts', 'PostController');
 
+// Comments
+Route::resource('comments', 'CommentController');
+
 // Dashboard
 Route::get('dashboard', function () {
     return view('Centaur::dashboard');

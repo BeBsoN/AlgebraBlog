@@ -94,7 +94,7 @@ public function __construct()
 			
 		} catch(Exception $e){
 			
-			session()->flash('danger', $e->getMessage());
+			session()->flash('error', $e->getMessage());
 			return redirect()->back();
 			
 		}
@@ -125,14 +125,25 @@ public function __construct()
     public function edit($id)
     {
         $post = Post::findOrFail($id);// dohvat post-a, ako je krivi id : poruka
+        
+        $user_id = Sentinel::getUser()->id; // dohvati property preko get user metode i napuni varijablu
+        
+        if(Sentinel::inRole('administrator') or $user_id === $post->user_id){
+			return view('centaur.posts.edit',
+		[
+			'post' => $post  //ključ je naziv varijable, kada se šalje iz kontrolera na view
+		]);
+		} else {
+                    session()->flash('error', 'You don\'t have permissions to do that !!!');
+                    return redirect()->back();
+			
+		}
+        
 		
 		//$post = Post::find($id);  --za ovu pizdariju moram pisati logiku, gore imamo gotovu metodu
 		//abort(404);
 		
-		return view('centaur.posts.edit',
-		[
-			'post' => $post  //ključ je naziv varijable, kada se šalje iz kontrolera na view
-		]);
+		
 	}
 
     /**
@@ -162,7 +173,7 @@ public function __construct()
 			
 		} catch(Exception $e){
 			
-			session()->flash('danger', $e->getMessage());
+			session()->flash('error', $e->getMessage());
 			return redirect()->back();
 			
 		}
