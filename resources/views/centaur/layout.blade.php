@@ -28,7 +28,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/">Centaur</a>
+                    <a class="navbar-brand" href="/">Home</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,6 +38,7 @@
 						<li class="{{ Request::is('posts*') ? 'active' : '' }}"><a href="{{ route('posts.index') }}">Posts</a></li>
 						@endif()
                         @if (Sentinel::check() && Sentinel::inRole('administrator'))
+                            <li class="{{ Request::is('comments*') ? 'active' : '' }}"><a href="{{ route('comments.index') }}">Comments({{$count  = DB::table('comments')->where('status', 2)->count()}})</a></li>
                             <li class="{{ Request::is('users*') ? 'active' : '' }}"><a href="{{ route('users.index') }}">Users</a></li>
                             <li class="{{ Request::is('roles*') ? 'active' : '' }}"><a href="{{ route('roles.index') }}">Roles</a></li>
                         @endif
@@ -65,5 +66,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <!-- Restfulizer.js - A tool for simulating put,patch and delete requests -->
         <script src="{{ asset('restfulizer.js') }}"></script>
+        <!-- dataTables, potreban im je jQuery, za kometare) --
+        <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script
+      src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+  <link rel="stylesheet"
+      href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">-->
     </body>
 </html>

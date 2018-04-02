@@ -23,12 +23,13 @@ public function saveComment($comment)
 	*@return int $id
 	*@return void   nema potrebe išta vraćati
 	*/
-	
+
 	public function updateComment($comment)
 	{
-		return $this->update($coment); // create se nalazi u klasi Model koju extendamo
-		
+		return $this->update($comment); // create se nalazi u klasi Model koju extendamo
+
 	}
+   //protected $table="comments";
     /**
      * Get the comment  user. 1 komentar ima samo 1 user-a/authora
      */
@@ -36,7 +37,7 @@ public function saveComment($comment)
     {
         return $this->belongsTo('App\Models\User');
     }
-    
+
     /**
      * Get the comment post. 1 komentar pripada samo jednom user-u/authoru
      */
@@ -44,5 +45,5 @@ public function saveComment($comment)
     {
         return $this->belongsTo('App\Models\Post');
     }
-    
+
 }

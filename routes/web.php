@@ -45,6 +45,7 @@ Route::resource('posts', 'PostController');
 
 // Comments
 Route::resource('comments', 'CommentController');
+//Route::resource('comments.approve', 'CommentController@approve');
 
 // Dashboard
 Route::get('dashboard', function () {
